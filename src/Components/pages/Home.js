@@ -1,8 +1,14 @@
 import React, { useState, useEffect, useCallback } from 'react';
+
+// utilities
 import Requester from "../../utilities/Requester";
 import TwoDigitsNumber from "../../utilities/TwoDigitsNumber"
+
+// reuseable components
 import ReposList from "../reusableComponents/ReposList";
 import Spinner from "../reusableComponents/Spinner";
+
+// style module
 import styles from "./Home.module.scss";
 
 
@@ -38,9 +44,9 @@ function Home() {
       .then((res) => {
         // - add the new 20 records to the current records list.
         // - update the page number, to be suitable for the request of the next 10 records.
-          setSpinnerDisplay(false);
-          setReposList([...reposList, ...res.data.items]);
-          setPageNumber(num + 1);
+        setSpinnerDisplay(false);
+        setReposList([...reposList, ...res.data.items]);
+        setPageNumber(num + 1);
 
       }).catch(() => {
         window.alert("API Request Failed : Failed To Fetch More repos Data");
@@ -81,13 +87,13 @@ function Home() {
       <div className="container">
 
         <ReposList reposList={reposList} />
-        
+
         <div id="spinner" className={styles.spinner_box}>
           {spinnerDisplay &&
-           <Spinner />
+            <Spinner />
           }
         </div>
-        
+
       </div>
     </section>
   )

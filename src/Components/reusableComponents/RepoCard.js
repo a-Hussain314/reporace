@@ -1,6 +1,11 @@
 import React from 'react';
-import styles from "./RepoCard.module.scss";
+
+// utilities
 import daysAgoCalculater from "../../utilities/daysAgoCalculater";
+
+// style module
+import styles from "./RepoCard.module.scss";
+
 
 function RepoCard({ repo }) {
     let daysAgo = daysAgoCalculater(repo.created_at);
