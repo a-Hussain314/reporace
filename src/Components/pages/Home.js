@@ -85,7 +85,7 @@ function Home() {
   return (
     <section className={styles.home}>
       <div className="container">
-
+        <p className={styles.note}>the most starred Github repos that were created in the last 30 days</p>
         <ReposList reposList={reposList} />
 
         <div id="spinner" className={styles.spinner_box}>
