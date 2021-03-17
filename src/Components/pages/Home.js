@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Requester from "../../utilities/Requester";
 import styles from "./Home.module.scss";
+import Spinner from "../reusableComponents/Spinner";
 import TwoDigitsNumber from "../../utilities/TwoDigitsNumber"
 
 function Home() {
   const [reposList, setReposList] = useState([]);
   const [pageNumber, setPageNumber] = useState(1);
   const [previousPageNumber, setPreviousPageNumber] = useState(0);
+  const [spinnerDisplay, setSpinnerDisplay] = useState(false);
   const reposPerPage = 20;
 
 
@@ -14,6 +16,8 @@ function Home() {
     // updates last fetched page number. 
     // set the spinner to be visible.
     setPreviousPageNumber(num);
+    setSpinnerDisplay(true);
+
 
     let dateToday = new Date();
 
@@ -32,11 +36,13 @@ function Home() {
       .then((res) => {
         // - add the new 20 records to the current records list.
         // - update the page number, to be suitable for the request of the next 10 records.
+          setSpinnerDisplay(false);
           setReposList([...reposList, ...res.data.items]);
           setPageNumber(num + 1);
 
       }).catch(() => {
         window.alert("API Request Failed : Failed To Fetch More repos Data");
+        setSpinnerDisplay(false);
       })
   }, [reposList])
 
@@ -80,8 +86,8 @@ function Home() {
             })
           }
         </div>
-        <div id="spinner" >
-          
+        <div id="spinner" className={styles.spinner_box}>
+          {spinnerDisplay && <Spinner />}
         </div>
         
       </div>

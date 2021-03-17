@@ -1,0 +1,23 @@
+@import "../../styles/varibles.scss";
+
+.loader {
+  border           : 0.3rem solid $basic-light-grey;
+  border-top       : 0.3rem solid $primary;
+  border-radius    : 50%;
+  width            : 2rem;
+  height           : 2rem;
+  margin           : 1rem auto;
+  -webkit-animation: spin 0.5s linear infinite;
+  animation        : spin 0.5s linear infinite;
+}
+
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
