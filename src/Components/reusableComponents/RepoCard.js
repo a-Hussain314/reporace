@@ -26,7 +26,10 @@ function RepoCard({ repo }) {
                 </h3>
                 <p className={styles.description}>{repo.description || "No Description Available"}</p>
                 <b className={styles.info}>Stars : {repo.stargazers_count} &nbsp; Issues: {repo.open_issues_count}</b>
-                <b className={styles.time}>Submitted {daysAgo.days} {daysAgo.postix} Ago</b>
+                <b className={styles.time}>
+                    Submitted {daysAgo.days} {daysAgo.postix} Ago by 
+                    <a className="normalized_link" href={repo.owner.html_url} target="_blank" rel="noopener noreferrer" > {repo.owner.login}</a>
+                </b>
             </div>
 
         </div>
