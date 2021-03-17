@@ -1,0 +1,59 @@
+@import "../../styles/varibles.scss";
+
+html {
+    font-size: 16px;
+
+    @media (max-width : 991px) {
+        font-size: 14px;
+    }
+
+    @media (max-width : 567px) {
+        font-size: 12px;
+    }
+
+}
+
+body {
+    margin     : 0rem;
+    font-family: 'Cairo', sans-serif;
+}
+
+.appMain {
+    min-height      : calc(100vh - 8rem);
+    background-color: $basic-grey;
+}
+
+header,
+footer {
+    height          : 4rem;
+    background-color: $primary;
+    color           : $basic-light;
+    display         : flex;
+    align-items     : center;
+}
+
+header {
+
+    h1 {
+        margin   : 0px;
+        font-size: 1.8rem;
+        display  : inline-block;
+    }
+
+    a {
+        color          : inherit;
+        text-decoration: none;
+        font-weight    : bold;
+
+        text-transform: capitalize;
+        margin        : auto 0.5rem;
+    }
+
+
+}
+
+footer {
+    p {
+        text-align: center;
+    }
+}
