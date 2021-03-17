@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Requester from "../../utilities/Requester";
 import TwoDigitsNumber from "../../utilities/TwoDigitsNumber"
+import ReposList from "../reusableComponents/ReposList";
 import Spinner from "../reusableComponents/Spinner";
-import RepoCard from "../reusableComponents/RepoCard"
 import styles from "./Home.module.scss";
 
 
@@ -79,17 +79,13 @@ function Home() {
   return (
     <section className={styles.home}>
       <div className="container">
-        <div>
-          {
-            reposList.map((repo, index) => {
-              return (
-                <RepoCard repo={repo}/>
-                )
-            })
-          }
-        </div>
+
+        <ReposList reposList={reposList} />
+        
         <div id="spinner" className={styles.spinner_box}>
-          {spinnerDisplay && <Spinner />}
+          {spinnerDisplay &&
+           <Spinner />
+          }
         </div>
         
       </div>
