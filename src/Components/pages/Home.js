@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Requester from "../../utilities/Requester";
-import styles from "./Home.module.scss";
-import Spinner from "../reusableComponents/Spinner";
 import TwoDigitsNumber from "../../utilities/TwoDigitsNumber"
+import Spinner from "../reusableComponents/Spinner";
+import RepoCard from "../reusableComponents/RepoCard"
+import styles from "./Home.module.scss";
+
 
 function Home() {
   const [reposList, setReposList] = useState([]);
@@ -81,7 +83,7 @@ function Home() {
           {
             reposList.map((repo, index) => {
               return (
-                <p key={index}>{repo.name}</p>
+                <RepoCard repo={repo}/>
                 )
             })
           }

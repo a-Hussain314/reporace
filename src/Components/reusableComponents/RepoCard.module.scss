@@ -1,0 +1,69 @@
+@import "../../styles/varibles.scss";
+
+.repo_card {
+    background-color: $basic-light;
+    max-width       : 991px;
+    margin          : 1rem auto 1rem auto;
+    padding         : 1.2rem 1.8rem;
+    border-radius   : 1rem;
+    box-shadow      : 0px 5px 5px -6px rgba(0, 0, 0, 0.75);
+    display         : flex;
+    justify-content : flex-start;
+    align-items     : flex-start;
+
+    .card_left {
+        .img_container {
+            width           : 7rem;
+            height          : 7rem;
+            margin          : 0 1rem 0 0;
+            border-radius   : 0.25rem;
+            overflow        : hidden;
+            background-color: $basic-light;
+            box-shadow      : 0px 0px 10px -5px rgba(0, 0, 0, 0.75);
+
+            a {
+                height         : 100%;
+                width          : 100%;
+                display        : flex;
+                justify-content: center;
+                align-items    : center;
+
+                img {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    .card_right {
+        h3 {
+            text-transform: capitalize;
+            margin        : 0px;
+
+            &:hover {
+                color: $primary;
+            }
+        }
+
+        p {
+            line-height: 1.2rem;
+        }
+
+        .description {
+            margin-top: 0rem;
+        }
+
+        .info {
+            margin : 0;
+            color  : $primary-dark;
+            display: block;
+        }
+
+        .time {
+            margin : 0;
+            display: block;
+        }
+    }
+
+
+}
