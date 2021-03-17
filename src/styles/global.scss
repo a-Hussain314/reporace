@@ -1,5 +1,10 @@
 @import "./varibles.scss";
 
+::selection {
+  background: $primary;
+  color: $basic-light;
+}
+
 .container {
   width   : 1280px;
   margin  : 0% auto;
