@@ -1,0 +1,17 @@
+@import "./varibles.scss";
+
+.container {
+  width   : 1280px;
+  margin  : 0% auto;
+  overflow: hidden;
+
+  @media (max-width:1400px) {
+    width : 94%;
+    margin: 0px 3%;
+  }
+}
+
+.normalized_link {
+  color          : inherit;
+  text-decoration: none;
+}
