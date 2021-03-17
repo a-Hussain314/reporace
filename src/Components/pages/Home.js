@@ -30,19 +30,26 @@ function Home() {
     // fetch the next 20 records
     Requester.get(`/search/repositories?q=created:>${year}-${TwoDigitsNumber(month)}-${TwoDigitsNumber(day)}&sort=stars&order=desc&per_page=${reposPerPage}&page=${num}`)
       .then((res) => {
-
         // - add the new 20 records to the current records list.
         // - update the page number, to be suitable for the request of the next 10 records.
-        window.setTimeout(() => {
           setReposList([...reposList, ...res.data.items]);
           setPageNumber(num + 1);
-        }, 500)
 
       }).catch(() => {
         window.alert("API Request Failed : Failed To Fetch More repos Data");
       })
   }, [reposList])
 
+
+  const scrollHandler = useCallback(() => {
+    // the condition checks if the page verticaly scrolled to the end of the page, and
+    // also checks if no previous request has been made with the same "page number",
+    // to prevent repeated requests for the same 20 records. 
+    if (window.innerHeight > document.getElementById("spinner").getBoundingClientRect().bottom && pageNumber > previousPageNumber) {
+      reposFetcher(pageNumber)
+    }
+
+  }, [pageNumber, previousPageNumber, reposFetcher])
 
 
   useEffect(() => {
@@ -51,7 +58,14 @@ function Home() {
       reposFetcher(pageNumber)
     }
 
-  }, [pageNumber, previousPageNumber, reposList, reposFetcher])
+    //   attach the scrolling logic to the window 
+    window.addEventListener("scroll", scrollHandler);
+
+    //   deattach the scrolling logic form the window 
+    return () => {
+      window.removeEventListener("scroll", scrollHandler);
+    }
+  }, [pageNumber, previousPageNumber, reposList, scrollHandler, reposFetcher])
 
 
   return (
@@ -66,7 +80,9 @@ function Home() {
             })
           }
         </div>
-
+        <div id="spinner" >
+          
+        </div>
         
       </div>
     </section>
