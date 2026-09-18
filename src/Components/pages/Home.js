@@ -21,22 +21,23 @@ function Home() {
 
 
   const reposFetcher = useCallback((num) => {
-    // updates last fetched page number. 
+    // updates last fetched page number.
     // set the spinner to be visible.
     setPreviousPageNumber(num);
     setSpinnerDisplay(true);
 
 
+    // roll back 30 days from today, to build a true rolling 30-day window
     let dateToday = new Date();
+    dateToday.setDate(dateToday.getDate() - 30);
 
-    // current year
+    // year of the date 30 days ago
     let year = dateToday.getFullYear();
 
-    // current month : zero based index (strats from 0), january = 0
-    // to fetch the last month repos, we use it without any modification 
-    let month = dateToday.getMonth();
+    // month of the date 30 days ago : getMonth() is zero-indexed (january = 0), so add 1
+    let month = dateToday.getMonth() + 1;
 
-    // current day
+    // day of the date 30 days ago
     let day = dateToday.getDate()
 
     // fetch the next 20 records
@@ -58,7 +59,7 @@ function Home() {
   const scrollHandler = useCallback(() => {
     // the condition checks if the page verticaly scrolled to the end of the page, and
     // also checks if no previous request has been made with the same "page number",
-    // to prevent repeated requests for the same 20 records. 
+    // to prevent repeated requests for the same 20 records.
     if (window.innerHeight > document.getElementById("spinner").getBoundingClientRect().bottom && pageNumber > previousPageNumber) {
       reposFetcher(pageNumber)
     }
@@ -72,10 +73,10 @@ function Home() {
       reposFetcher(pageNumber)
     }
 
-    //   attach the scrolling logic to the window 
+    //   attach the scrolling logic to the window
     window.addEventListener("scroll", scrollHandler);
 
-    //   deattach the scrolling logic form the window 
+    //   deattach the scrolling logic form the window
     return () => {
       window.removeEventListener("scroll", scrollHandler);
     }
