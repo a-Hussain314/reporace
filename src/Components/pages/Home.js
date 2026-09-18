@@ -17,6 +17,7 @@ function Home() {
   const [pageNumber, setPageNumber] = useState(1);
   const [previousPageNumber, setPreviousPageNumber] = useState(0);
   const [spinnerDisplay, setSpinnerDisplay] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const reposPerPage = 20;
 
 
@@ -25,6 +26,7 @@ function Home() {
     // set the spinner to be visible.
     setPreviousPageNumber(num);
     setSpinnerDisplay(true);
+    setErrorMessage('');
 
 
     // roll back 30 days from today, to build a true rolling 30-day window
@@ -50,7 +52,7 @@ function Home() {
         setPageNumber(num + 1);
 
       }).catch(() => {
-        window.alert("API Request Failed : Failed To Fetch More repos Data");
+        setErrorMessage("Failed to fetch more repos. Please try again later.");
         setSpinnerDisplay(false);
       })
   }, [])
@@ -87,6 +89,9 @@ function Home() {
     <section className={styles.home}>
       <div className="container">
         <p className={styles.note}>the most starred Github repos that were created in the last 30 days</p>
+        {errorMessage &&
+          <p className={styles.error}>{errorMessage}</p>
+        }
         <ReposList reposList={reposList} />
 
         <div id="spinner" className={styles.spinner_box}>
