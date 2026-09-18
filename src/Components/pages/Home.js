@@ -46,14 +46,14 @@ function Home() {
         // - add the new 20 records to the current records list.
         // - update the page number, to be suitable for the request of the next 10 records.
         setSpinnerDisplay(false);
-        setReposList([...reposList, ...res.data.items]);
+        setReposList((prev) => [...prev, ...res.data.items]);
         setPageNumber(num + 1);
 
       }).catch(() => {
         window.alert("API Request Failed : Failed To Fetch More repos Data");
         setSpinnerDisplay(false);
       })
-  }, [reposList])
+  }, [])
 
 
   const scrollHandler = useCallback(() => {
